@@ -32,6 +32,7 @@ class UserServiceTest {
 
 		var user = userService.register(userBeforeSave);
 
+		// Verifica se passou uma vez no save
 		Mockito.verify(userRepository).save(userBeforeSave);
 		Assertions.assertEquals(userAfterSave, user);
 
@@ -39,4 +40,21 @@ class UserServiceTest {
 	// barrar menores que 18 anos
 	// o nome do usuário deve ter no mínimo 3 e no máximo 10 caracteres
 	// a senha deve coter no mínimo 4 e no máximo 6 caracteres
+
+	@Test
+	public void should_return_error_when_age_is_less_than_eighteen() {
+		User user = new User(null, "Danilo", "1234", LocalDate.of(2010, 4, 10));
+
+		// Verifica se foi lançada uma excessão
+		var exception = Assertions.assertThrows(RuntimeException.class, () -> userService.register(user));
+
+		// Forma de ver se já pasosu no metodo
+		// Mockito.verify(userRepository, Mockito.never()).save(user);
+
+		// Verifica se não teve nenhuma interação com userRepository
+		Mockito.verifyNoInteractions(userRepository);
+		Assertions.assertEquals("Idade não permitida", exception.getMessage());
+
+
+	}
 }
