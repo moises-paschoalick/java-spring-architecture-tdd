@@ -1,18 +1,30 @@
-package com.paschoalick.register;
+package com.paschoalick.register.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.time.LocalDate;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "users")
 public class User {
 
+
+    /*
+    // Vai usar o loobok
+    // Não usa o id
     public User(String name, String password, LocalDate dateOfBirth) {
         this.name = name;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
-    }
+    }*/
 
+    @MongoId
     private String id;
 
     private String name;
@@ -21,6 +33,9 @@ public class User {
 
     private LocalDate dateOfBirth;
 
+
+    //vai usar o loombok
+    /*
     public String getId() {
         return id;
     }
@@ -51,5 +66,5 @@ public class User {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
+    }*/
 }

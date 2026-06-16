@@ -1,5 +1,6 @@
-package com.paschoalick.register;
+package com.paschoalick.register.repository;
 
+import com.paschoalick.register.domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
