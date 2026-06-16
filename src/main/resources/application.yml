@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: register
+  mongodb:
+    uri: mongodb://root:example@localhost:27017/register?authSource=admin
